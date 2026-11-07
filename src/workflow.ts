@@ -1,7 +1,7 @@
 import { readFile, mkdir, writeFile, rename } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { duplicateKey, processDrafts } from './routing.ts';
-import type { Draft, Reporting, Result, Rules } from './routing.ts';
+import type { Draft, Reporting, Result, Rules, Stock } from './routing.ts';
 
 export class ApiError extends Error {
   status: number;
@@ -11,9 +11,9 @@ export class ApiError extends Error {
 // Review/correction precedes manager approval; the specialist signs off only once,
 // at the end. Specialist-only quotes can approve directly from specialist_pending.
 type State = 'specialist_pending' | 'approver_pending' | 'specialist_final_pending' | 'approved' | 'rejected' | 'duplicate';
-type Quote = { draft: Draft; routing: Result; state: State; received_at: string };
+type Quote = { draft: Draft; routing: Result; state: State; received_at: string; policy_version?: number };
 type Event = { actor: string; action: string; quote_id: string | null; timestamp: string; before: State | null; after: State | null; note: string };
-type Store = { quotes: Quote[]; audit: Event[] };
+export type Store = { quotes: Quote[]; audit: Event[] };
 
 export class Workflow {
   store: Store = { quotes: [], audit: [] };
@@ -22,8 +22,10 @@ export class Workflow {
   reporting: Reporting;
   rules: Rules;
   clock: () => string;
-  constructor(path: string, reporting: Reporting, rules: Rules, clock = () => new Date().toISOString()) {
+  options: { persist?: (store: Store) => Promise<void>; stockReader?: (part: string) => Promise<Stock | null | undefined>; policyVersion?: number };
+  constructor(path: string, reporting: Reporting, rules: Rules, clock = () => new Date().toISOString(), options: { persist?: (store: Store) => Promise<void>; stockReader?: (part: string) => Promise<Stock | null | undefined>; policyVersion?: number } = {}) {
     this.path = path; this.reporting = reporting; this.rules = rules; this.clock = clock;
+    this.options = options;
   }
   async load() {
     try { this.store = JSON.parse(await readFile(this.path, 'utf8')); }
@@ -44,9 +46,12 @@ export class Workflow {
         if (copy.audit.length === this.store.audit.length) this.event(copy, actor || 'anonymous', 'operation_failed', undefined, null, `HTTP ${error.status}`);
         failure = error;
       }
-      await mkdir(dirname(this.path), { recursive: true });
-      await writeFile(this.path + '.tmp', JSON.stringify(copy, null, 2) + '\n');
-      await rename(this.path + '.tmp', this.path);
+      if (this.options.persist) await this.options.persist(copy);
+      else {
+        await mkdir(dirname(this.path), { recursive: true });
+        await writeFile(this.path + '.tmp', JSON.stringify(copy, null, 2) + '\n');
+        await rename(this.path + '.tmp', this.path);
+      }
       this.store = copy;
       if (failure instanceof ApiError) { failure.audited = true; throw failure; }
       return structuredClone(value!);
@@ -107,10 +112,11 @@ export class Workflow {
         let routing: Result;
         if (original) routing = { draft_id: draft.draft_id, status: 'duplicate', net_total: null, effective_discount_pct: null, approver_id: null, specialist_review_flags: [], duplicate_of: original.draft.draft_id };
         else {
-          try { [routing] = await processDrafts([draft], this.reporting, this.rules, pricingNow ?? receivedAt); }
+          try { [routing] = await processDrafts([draft], this.reporting, this.rules, pricingNow ?? receivedAt, this.options.stockReader); }
           catch { throw new ApiError(400, 'Invalid draft or reporting data; import rejected'); }
         }
         const quote: Quote = { draft, routing, received_at: receivedAt, state: original ? 'duplicate' : 'specialist_pending' };
+        if (this.options.policyVersion !== undefined) quote.policy_version = this.options.policyVersion;
         store.quotes.push(quote); imported.push(quote); this.event(store, actor, original ? 'duplicate_detected' : 'draft_processed', quote, null);
       }
       return imported;

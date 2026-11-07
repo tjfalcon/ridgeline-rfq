@@ -2,7 +2,7 @@
 
 ## Repository
 
-Public repository: https://github.com/tjfalcon/ridgeline-rfq. Source inputs are in `data-pack_platform/`; the challenge is in `project-description.md`.
+Live portfolio demo: **https://ridgeline-rfq.vercel.app**. Public repository: https://github.com/tjfalcon/ridgeline-rfq. Source inputs are in `data-pack_platform/`; the challenge is in `project-description.md`.
 
 ## How to Run
 
@@ -28,13 +28,43 @@ npm test
 npm run typecheck
 ```
 
-Start the quote API and optional lightweight UI:
+Start the assessment API and portfolio UI (the UI uses its own isolated demo workspace):
 
 ```powershell
 npm run dev
 ```
 
 Open <http://127.0.0.1:3001>. Choose a reviewer, select a quote, inspect its lines and flags, then perform the permitted action. Stop the service with Ctrl+C.
+
+For the standalone portfolio demo, no Python process is needed:
+
+```powershell
+npm run dev:demo
+```
+
+Open <http://127.0.0.1:3002>. Without `DATABASE_URL`, demo workspaces use bounded in-memory storage and disappear on restart. For persistent local demo testing, copy `.env.example` to ignored `.env.local`, supply the database URL, and run:
+
+```powershell
+node --env-file=.env.local src/demo.ts
+```
+
+The public deployment uses Vercel Functions and Neon Postgres. Each visitor gets an opaque HttpOnly cookie and an isolated workspace. Workspaces expire after 24 hours of inactivity; the demo retains approximately 500 recent audit events. All data is fictional and reviewer identities are simulated.
+
+The UI lets visitors edit approval thresholds, the amount trigger, confidence and freshness limits. **Save rules & reset samples** validates settings, increments the policy version, records previous/new rule values, reprices/reroutes ten samples and clears prior approvals. Each resulting quote records its policy version. **Reset samples** keeps current settings. Stock scenarios simulate healthy, stale or unavailable HTTP responses in process through the shared retry adapter; the original assessment CLI continues to call the independently running stock API over HTTP.
+
+The summary shows pending/approved/rejected/duplicate counts, workflow stages and average receipt-to-final-approval time for completed quotes. Switch reviewer identities to follow the same specialist -> manager/VP -> specialist gates.
+
+Deployment from this app directory after Vercel login:
+
+```powershell
+vercel link
+vercel env pull .env.local
+npm test
+npm run typecheck
+vercel deploy --prod
+```
+
+Connect a Postgres database to the Vercel project and provide `DATABASE_URL` in Production/Preview settings. The function initializes `ridgeline_demo_workspaces` and uses database transactions/advisory locks for per-workspace changes. Credentials stay server-side. `vercel.json` serves the static UI and routes `/demo/*` to the function. Hosted mode fails closed without database configuration. The original local quote store is unchanged.
 
 Sample processing uses the policy clock `2026-10-12T09:30:00-05:00`. Ordinary draft imports use current time. Receipt and audit timestamps use actual time.
 
@@ -111,11 +141,11 @@ Invoke-RestMethod "$base/quotes/DQ-24102/audit" -Headers $specialist
 
 The existing demonstration store already approved DQ-24102; replaying its decisions correctly fails. Use another pending quote and its routed approver, or preserve the store and use a fresh isolated copy for a repeatable demo.
 
-Verification: 22 automated tests cover tiers/boundaries, backups, pricing, duplicates, stale/missing/unavailable stock, retries/timeouts, malformed responses, configuration validation, HTTP roles/workflow, audit and persistence reload. `npm run typecheck` checks source and tests. Earlier live evidence includes approval surviving a process restart. The UI endpoint responds, but automated visual verification was unavailable.
+Verification: 28 automated tests cover tiers/boundaries, backups, pricing, duplicates, stale/missing/unavailable stock, retries/timeouts, malformed responses, configuration validation, HTTP roles/workflow, audit and persistence reload. `npm run typecheck` checks source and tests. Earlier live evidence includes approval surviving a process restart. The public UI endpoint responds. A live production API walkthrough verified ten quotes, the three-stage approval, saved policy/reset, unavailable stock and visitor isolation. Automated visual browser verification was unavailable.
 
 ## Production
 
-Proposed deployment; these production components are not implemented:
+The portfolio is deployed on Vercel with Neon workspace persistence. The following diagram describes the broader production integration; SAP access, corporate identity and monitoring services are not implemented:
 
 ```mermaid
 flowchart LR
@@ -138,7 +168,8 @@ Submission checklist:
 - Required paths: `README.md`, `.chat-history/log.md`, `outputs/routing_results.json` and runnable tests.
 - README uses the six required headings in order. Public repository: https://github.com/tjfalcon/ridgeline-rfq.
 - Review the assistant log for completeness and redaction; reconstructed entries are explicitly timestamped as estimates. Full recording/log compliance is not certified.
-- No application environment variables are used; an application `.env.example` is therefore not required. Exclude real `.env` files and secrets from any archive.
+- The portfolio backend uses `DATABASE_URL`; include `.env.example` with names only and exclude `.env.local` and all secret values. Exclude real `.env` files and secrets from any archive.
 - Recording must be one continuous full-screen MP4 with the system clock visible, ideally <=60 minutes and never >90. Narrate stubs, demonstrate the sample routes and show the production diagram.
 - Repository publication is handled separately from `ridgeline-quote-approvals.zip`, the public Drive recording link and final submission. Do not treat local tests as evidence these actions occurred.
+
 

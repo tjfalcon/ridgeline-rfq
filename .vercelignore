@@ -1,0 +1,7 @@
+.git/
+.chat-history/
+node_modules/
+var/
+outputs/
+.env*
+data-pack_platform/__MACOSX/

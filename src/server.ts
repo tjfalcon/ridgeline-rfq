@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { loadReporting } from './routing.ts';
 import { ApiError, Workflow } from './workflow.ts';
 import { loadRules } from './config.ts';
+import { demoHandler } from './demo.ts';
 
 export function createApi(workflow: Workflow, sampleDrafts: unknown) {
   return createServer(async (request, response) => {
@@ -11,6 +12,7 @@ export function createApi(workflow: Workflow, sampleDrafts: unknown) {
     let pathname = '/';
     try {
       pathname = new URL(request.url!, 'http://localhost').pathname;
+      if (pathname.startsWith('/demo/')) { await demoHandler(request, response); return; }
       const path = pathname.split('/').filter(Boolean);
       if (request.method === 'GET' && pathname === '/') {
         const html = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');

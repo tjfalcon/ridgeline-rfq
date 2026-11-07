@@ -1,0 +1,12 @@
+{
+  "framework": null,
+  "buildCommand": "npm run typecheck",
+  "outputDirectory": "public",
+  "functions": {
+    "api/index.ts": {
+      "includeFiles": "{config,data-pack_platform}/**",
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [{ "source": "/demo/:path*", "destination": "/api" }]
+}

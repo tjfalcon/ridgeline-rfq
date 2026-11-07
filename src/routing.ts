@@ -6,7 +6,7 @@ export type Draft = { draft_id: string; rfq_id: string; customer_id: string; cre
 export type Rules = { sampleNow: string; specialistMaxDiscountPct: number; managerMaxDiscountPct: number; managerMinNetCents: number; confidenceMinimum: number; stockMaxAgeHours: number; reportingMaxAgeHours: number; duplicateWindowHours: number; stockBaseUrl: string; stockAttempts: number; stockTimeoutMs: number; stockBackoffMs: number; stockMaxBackoffMs: number };
 export type Reporting = { products: Row[]; customers: Row[]; contracts: Row[]; approvers: Row[]; exportedAt: string };
 type Flag = { line: number | null; reason: string };
-type Stock = { warehouses: Record<string, number>; as_of: string };
+export type Stock = { warehouses: Record<string, number>; as_of: string };
 export type Result = { draft_id: string; status: string; net_total: number | null; effective_discount_pct: number | null; approver_id: string | null; specialist_review_flags: Flag[]; duplicate_of: string | null };
 
 // CSV snapshots contain quoted descriptions, including commas and escaped quotes.

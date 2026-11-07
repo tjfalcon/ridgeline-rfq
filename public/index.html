@@ -1,32 +1,180 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ridgeline · Quote approvals</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Explore a fictional industrial quote approval workflow with editable policy, stock scenarios, and an auditable human approval process.">
+<title>Ridgeline | Quote approval workbench</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f3f5f7;color:#172b3a;font:14px/1.5 system-ui,sans-serif}header{background:#142f40;color:white;padding:24px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}h1{font-size:24px;margin:0;letter-spacing:-.6px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#9fc4d1}header p{margin:5px 0 0;color:#bdd0d9}.controls{display:flex;align-items:end;gap:8px;flex-wrap:wrap}label{display:block;font-size:12px;font-weight:650}select,button,textarea{font:inherit;border:1px solid #ccd5dc;border-radius:6px;padding:9px 12px}button{cursor:pointer;background:white;color:#17384a;font-weight:650}button:hover{background:#eaf3f6}button:disabled{opacity:.45;cursor:default}button.primary{background:#146b76;color:white;border-color:#146b76}button.danger{color:#a83f3f}select{background:white;min-width:185px}.notice{padding:10px 32px;background:#e4edf1;font-size:12px;color:#496371}#status{min-height:30px;padding:5px 32px;color:#456372}main{max-width:1500px;margin:auto;padding:12px 28px 32px;display:grid;grid-template-columns:300px 1fr;gap:20px}.panel{background:white;border:1px solid #dde4e9;border-radius:10px;overflow:hidden}.panel-title{padding:18px;border-bottom:1px solid #e6ebef;display:flex;justify-content:space-between;align-items:center}h2{font-size:18px;margin:0}h3{font-size:14px;margin:0 0 12px}#quote-list{padding:8px;display:grid;gap:4px}.quote{width:100%;text-align:left;padding:13px;border-color:transparent;font-weight:400}.quote.selected{background:#e9f3f5;border-color:#99c5cc}.quote strong{font-size:14px}.quote small{display:block;color:#6a7e8a;margin-top:4px}.badge{display:inline-block;font-size:11px;background:#edf1f4;padding:3px 8px;border-radius:20px;color:#4d6472}.badge.approved{background:#dff2e6;color:#246c43}.badge.rejected{background:#fbe6e5;color:#9a3934}.detail{padding:24px}.detail-top{display:flex;justify-content:space-between;gap:12px;align-items:start}.muted{color:#6d808c}p{margin:6px 0 16px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.metric{background:#f6f8fa;border-radius:7px;padding:14px}.metric span{display:block;font-size:12px;color:#647b89}.metric strong{display:block;font-size:24px;font-weight:600;margin-top:4px}.flow{display:flex;gap:6px;margin:14px 0 24px;flex-wrap:wrap}.step{font-size:12px;background:#f0f3f5;padding:7px 12px;border-radius:5px}.step.current{background:#d9eef0;color:#155d68;font-weight:700}.section{margin-top:24px;padding-top:20px;border-top:1px solid #e8edf0}.flags{padding:12px 16px;border-radius:6px;background:#fff6e3;color:#806028;margin:8px 0}.flags ul{margin:0;padding-left:18px}.empty{padding:32px;color:#728894;text-align:center}table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;color:#70838e;font-weight:600;background:#f7f9fa}th,td{padding:9px 10px;border-bottom:1px solid #e8edf0;vertical-align:top}.scroll{overflow:auto}textarea{width:100%;resize:vertical;min-height:70px;margin:7px 0 10px}.actions{display:flex;gap:8px}.action-help{font-size:12px;color:#70838e;margin:8px 0}.count{font-size:12px;color:#70838e}#detail[hidden],#placeholder[hidden]{display:none}@media(max-width:800px){header{display:block;padding:20px}.controls{margin-top:18px}main{grid-template-columns:1fr;padding:10px}.metrics{grid-template-columns:1fr 1fr}.detail{padding:16px}.notice,#status{padding-left:20px;padding-right:20px}}
+:root{color-scheme:light;--ink:#173244;--muted:#627783;--line:#dce5e9;--teal:#126c72;--paper:#fff;--bg:#f3f6f7}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,sans-serif}button,input,select,textarea{font:inherit}button,input,select,textarea{border:1px solid #bdcdd5;border-radius:7px;padding:9px 12px}button{cursor:pointer;background:white;color:var(--ink);font-weight:650}button:hover{background:#eaf3f4}button:disabled{opacity:.5;cursor:default}button.primary{color:white;background:var(--teal);border-color:var(--teal)}button.danger{color:#9d3737}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #e6b452;outline-offset:2px}header{background:#153447;color:white;padding:28px max(24px,calc((100vw - 1440px)/2));display:flex;justify-content:space-between;align-items:center;gap:24px}header p{color:#bed1da;margin:7px 0 0}h1{font-size:28px;letter-spacing:-.7px;margin:3px 0}h2{font-size:19px;margin:0}h3{font-size:14px;margin:0 0 12px}.eyebrow{text-transform:uppercase;font-size:10px;font-weight:750;letter-spacing:2px;color:#8fbfc8}.controls{display:flex;align-items:end;gap:8px;flex-wrap:wrap}.controls select{max-width:230px}label{display:block;font-size:12px;font-weight:650;margin-bottom:5px}.page{max-width:1488px;padding:20px 24px 36px;margin:auto}.notice{padding:12px 16px;border:1px solid #c9dfe2;border-radius:8px;color:#42606d;background:#eaf4f4;font-size:12px}.notice strong{color:#165b65}#status{min-height:34px;padding:8px 2px;color:#486573}#status.error{color:#9c3535}.overview{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:0 0 18px}.stat{padding:16px;background:white;border:1px solid var(--line);border-radius:9px}.stat span{display:block;font-size:11px;color:var(--muted)}.stat strong{display:block;font-size:25px;margin-top:3px;letter-spacing:-.5px}.stat small{color:var(--muted);font-size:11px}.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px}.panel{background:white;border:1px solid var(--line);border-radius:10px;overflow:hidden}.panel-title{display:flex;justify-content:space-between;align-items:center;padding:18px;border-bottom:1px solid var(--line)}.count,.muted{color:var(--muted)}#quote-list{padding:8px;display:grid;gap:3px}.quote{width:100%;text-align:left;border-color:transparent;padding:12px;font-weight:400}.quote.selected{background:#eaf4f4;border-color:#9ec6cc}.quote strong{font-size:14px}.quote small{display:block;margin-top:4px;color:var(--muted)}.badge{display:inline-block;white-space:nowrap;font-size:11px;border-radius:20px;background:#edf1f4;padding:4px 9px;color:#4d6472}.badge.approved{background:#dff2e6;color:#246c43}.badge.rejected{background:#fbe6e5;color:#9a3934}.badge.duplicate{background:#eee8f7;color:#6b4b86}.detail{padding:24px}.detail-top{display:flex;justify-content:space-between;align-items:start;gap:12px}.detail-top p{margin:6px 0}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}.metric{background:#f6f8fa;padding:14px;border-radius:7px}.metric span{display:block;font-size:11px;color:var(--muted)}.metric strong{display:block;font-size:23px;margin-top:4px}.flow{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 22px}.step{font-size:11px;background:#f0f3f5;padding:7px 10px;border-radius:5px}.step.current{color:#155d68;background:#d9eef0;font-weight:750}.section{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}.flags{background:#fff6e3;color:#806028;padding:12px 16px;border-radius:7px;margin:12px 0}.flags ul{margin:5px 0 0;padding-left:18px}.empty{padding:40px 24px;text-align:center;color:var(--muted)}table{width:100%;border-collapse:collapse;font-size:12px}th{text-align:left;background:#f7f9fa;color:#607782;font-weight:650}th,td{padding:10px;border-bottom:1px solid #e7edf0;vertical-align:top}.scroll{overflow:auto}textarea{width:100%;resize:vertical;min-height:72px;margin:0 0 10px}.actions{display:flex;gap:8px;flex-wrap:wrap}.action-help{font-size:12px;color:var(--muted);margin:5px 0 14px}details.settings{margin-bottom:18px}details.settings>summary{cursor:pointer;padding:16px 18px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:10px}details.settings>summary::marker{content:''}.settings small{font-weight:400;color:var(--muted)}.settings-body{border-top:1px solid var(--line);padding:18px}.settings-body p{font-size:12px;color:var(--muted);margin:0 0 16px}.settings-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.field input,.field select{width:100%;min-width:0}.field small{display:block;margin-top:5px;font-size:11px}.settings-footer{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-top:18px}.settings-footer p{margin:0;max-width:650px}.meta{font-size:11px;color:var(--muted);margin-top:10px}.stage-summary{font-size:11px;color:var(--muted);margin:-8px 0 18px}.footer-note{font-size:11px;color:var(--muted);margin:20px 0 0}#detail[hidden],#placeholder[hidden],[hidden]{display:none!important}@media(max-width:1000px){.overview{grid-template-columns:repeat(3,1fr)}.settings-grid{grid-template-columns:repeat(3,1fr)}header{padding:24px}.layout{grid-template-columns:250px minmax(0,1fr)}}@media(max-width:720px){header{display:block;padding:20px}.controls{margin-top:18px}.page{padding:16px 12px}.overview{grid-template-columns:repeat(2,1fr)}.layout{grid-template-columns:1fr}.settings-grid{grid-template-columns:repeat(2,1fr)}.settings-footer{display:block}.settings-footer button{margin-top:12px}.detail{padding:18px}.metrics{gap:7px}.metric{padding:10px}.metric strong{font-size:18px}h1{font-size:25px}#quote-list{grid-template-columns:repeat(2,1fr);max-height:330px;overflow:auto}}
 </style>
 </head>
 <body>
-<header><div><div class="eyebrow">Ridgeline Industrial Supply</div><h1>Quote approvals</h1><p>Review the quote. Follow the route. Keep the decision visible.</p></div><div class="controls"><div><label for="actor">Reviewing as</label><select id="actor"><option value="S01">S01 · Specialist</option><option value="S02">S02 · Specialist</option><option value="S03">S03 · Specialist</option><option value="U01">U01 · West manager</option><option value="U02">U02 · Central manager</option><option value="U03">U03 · East manager</option><option value="U04">U04 · Backup approver</option><option value="U05">U05 · VP Sales</option></select></div><button id="refresh">Refresh</button><button id="import">Import samples</button></div></header>
-<div class="notice">Local demonstration · Actor selection is a simplified identity check. Every quote requires human sign-off. No customer delivery is connected.</div>
-<div id="status" role="status" aria-live="polite">Loading quotes…</div>
-<main><aside class="panel"><div class="panel-title"><h2>Quotes</h2><span id="count" class="count"></span></div><div id="quote-list"></div></aside><section class="panel"><div id="placeholder" class="empty">Import sample drafts or select a quote to begin.</div><div id="detail" class="detail" hidden><div class="detail-top"><div><div class="eyebrow muted" id="rfq"></div><h2 id="quote-title"></h2><p class="muted" id="customer"></p></div><span id="state" class="badge"></span></div><div class="metrics"><div class="metric"><span>Net quote total</span><strong id="total"></strong></div><div class="metric"><span>Effective discount</span><strong id="discount"></strong></div><div class="metric"><span>Routed approver</span><strong id="approver"></strong></div></div><div id="flow" class="flow"></div><div id="duplicate" class="flags" hidden></div><div id="flags" class="flags" hidden></div><h3>Draft lines</h3><div class="scroll"><table><thead><tr><th>Line</th><th>Part / description</th><th>Quantity</th><th>Confidence</th></tr></thead><tbody id="lines"></tbody></table></div><div class="section"><h3>Human decision</h3><p id="action-help" class="action-help"></p><label for="note">Review note / flag resolution</label><textarea id="note" placeholder="For flagged quotes, document what you confirmed or resolved."></textarea><div id="actions" class="actions"></div></div><div class="section"><h3>Audit history</h3><div class="scroll"><table><thead><tr><th>When / actor</th><th>Action</th><th>State transition</th><th>Note</th></tr></thead><tbody id="audit"></tbody></table></div></div></div></section></main>
+<header>
+  <div><div class="eyebrow">Ridgeline Industrial Supply</div><h1>Quote approval workbench</h1><p>Explore pricing, policy and human decisions.</p></div>
+  <div class="controls"><div><label for="actor">Simulated reviewer</label><select id="actor"><option value="S01">S01 · Specialist</option><option value="S02">S02 · Specialist</option><option value="S03">S03 · Specialist</option><option value="U01">U01 · West manager</option><option value="U02">U02 · Central manager</option><option value="U03">U03 · East manager</option><option value="U04">U04 · Backup approver</option><option value="U05">U05 · VP Sales</option></select></div><button id="refresh">Refresh</button><button id="reset">Reset samples</button></div>
+</header>
+<div class="page">
+  <div class="notice"><strong>Your own demo workspace.</strong> All quotes and companies are fictional. Try policy changes and approvals here without affecting other visitors. Reviewers are simulated identities; no customer delivery is connected.</div>
+  <div id="status" role="status" aria-live="polite">Preparing your sample quotes…</div>
+  <section class="overview" aria-label="Approval summary">
+    <div class="stat"><span>Total quotes</span><strong id="summary-total">—</strong><small>Includes duplicate drafts</small></div>
+    <div class="stat"><span>Awaiting people</span><strong id="summary-pending">—</strong><small>Review and approval stages</small></div>
+    <div class="stat"><span>Approved</span><strong id="summary-approved">—</strong><small>Final specialist sign-off</small></div>
+    <div class="stat"><span>Rejected</span><strong id="summary-rejected">—</strong><small>Closed by a reviewer</small></div>
+    <div class="stat"><span>Duplicates</span><strong id="summary-duplicates">—</strong><small>No second approval request</small></div>
+    <div class="stat"><span>Average approval time</span><strong id="summary-time">—</strong><small>Receipt to final sign-off</small></div>
+  </section>
+  <div id="stage-summary" class="stage-summary"></div>
+  <details class="panel settings" id="settings"><summary><span>Policy & stock scenarios</span><small id="config-meta">Loading policy…</small></summary><div class="settings-body">
+    <p>Change the routing policy or simulate a stock problem. Saving creates a new policy version and reprocesses the ten samples, clearing their prior approvals in this workspace.</p>
+    <form id="config-form">
+      <div class="settings-grid">
+        <div class="field"><label for="specialistMaxDiscountPct">Specialist discount limit (%)</label><input id="specialistMaxDiscountPct" type="number" min="0" max="100" step="0.01" required><small>At or below this limit, amount permitting</small></div>
+        <div class="field"><label for="managerMaxDiscountPct">Manager discount limit (%)</label><input id="managerMaxDiscountPct" type="number" min="0" max="100" step="0.01" required><small>Above this limit routes to VP</small></div>
+        <div class="field"><label for="managerMinNetDollars">Manager amount threshold (USD)</label><input id="managerMinNetDollars" type="number" min="0" step="0.01" required><small>At or above this amount routes to manager</small></div>
+        <div class="field"><label for="confidenceMinimum">Minimum extraction confidence</label><input id="confidenceMinimum" type="number" min="0" max="1" step="0.01" required><small>Below this value needs specialist attention</small></div>
+        <div class="field"><label for="stockMaxAgeHours">Maximum stock age (hours)</label><input id="stockMaxAgeHours" type="number" min="0" step="0.5" required></div>
+        <div class="field"><label for="reportingMaxAgeHours">Maximum reporting age (hours)</label><input id="reportingMaxAgeHours" type="number" min="0" step="0.5" required></div>
+        <div class="field"><label for="stockMode">Stock scenario</label><select id="stockMode"><option value="healthy">Healthy · fixture stock</option><option value="unavailable">Unavailable · retries exhausted</option><option value="stale">Stale · old stock readings</option></select><small>Uses fictional inventory, no local mock needed</small></div>
+      </div>
+      <div class="settings-footer"><p>Policy changes do not preserve approvals on newly evaluated quotes. To repeat a walkthrough without changing policy, use <strong>Reset samples</strong>.</p><button id="save-config" type="submit" class="primary">Save rules & reset samples</button></div>
+    </form>
+  </div></details>
+  <main class="layout">
+    <aside class="panel"><div class="panel-title"><h2>Quotes</h2><span id="count" class="count"></span></div><div id="quote-list"></div></aside>
+    <section class="panel"><div id="placeholder" class="empty">Select a quote to inspect its route and decisions.</div><div id="detail" class="detail" hidden>
+      <div class="detail-top"><div><div class="eyebrow muted" id="rfq"></div><h2 id="quote-title"></h2><p class="muted" id="customer"></p><div id="quote-policy" class="meta"></div></div><span id="state" class="badge"></span></div>
+      <div class="metrics"><div class="metric"><span>Net quote total</span><strong id="total"></strong></div><div class="metric"><span>Effective discount</span><strong id="discount"></strong></div><div class="metric"><span>Routed approver</span><strong id="approver"></strong></div></div>
+      <div id="flow" class="flow"></div><div id="duplicate" class="flags" hidden></div><div id="flags" class="flags" hidden></div>
+      <h3>Draft lines</h3><div class="scroll"><table><thead><tr><th>Line</th><th>Part / description</th><th>Quantity</th><th>Confidence</th></tr></thead><tbody id="lines"></tbody></table></div>
+      <div class="section"><h3>Human decision</h3><p id="action-help" class="action-help"></p><label for="note">Review note / flag resolution</label><textarea id="note" maxlength="2000" placeholder="For flagged quotes, document what you confirmed or resolved."></textarea><div id="actions" class="actions"></div></div>
+      <div class="section"><h3>Audit history</h3><div class="scroll"><table><thead><tr><th>When / actor</th><th>Action</th><th>State transition</th><th>Note</th></tr></thead><tbody id="audit"></tbody></table></div></div>
+    </div></section>
+  </main>
+  <p class="footer-note">Portfolio demonstration · Every quote requires a person’s final sign-off. Approval rules use the supplied sample policy date for reproducible outcomes.</p>
+</div>
 <script>
 const $ = id => document.getElementById(id);
-let quotes = [], selectedId = null, busy = false;
-const money = new Intl.NumberFormat('en-US', {style:'currency',currency:'USD'});
-const label = value => String(value ?? '—').replaceAll('_',' ');
-function node(tag, text, className) { const element = document.createElement(tag); if(text !== undefined) element.textContent=text; if(className) element.className=className; return element; }
-function message(text) { $('status').textContent=text; }
-async function api(path, method='GET', body) { const response=await fetch(path,{method,headers:{'X-User-Id':$('actor').value,'Content-Type':'application/json'},...(body ? {body:JSON.stringify(body)} : {})}); const result=await response.json(); if(!response.ok) throw new Error(result.error || 'Request failed'); return result; }
-async function perform(work) { if(busy)return; busy=true; try{await work();}catch(error){message(error.message);}finally{busy=false;} }
-async function refresh() { quotes=await api('/quotes'); if(!quotes.some(q=>q.draft.draft_id===selectedId))selectedId=quotes[0]?.draft.draft_id ?? null; renderList(); await renderDetail(); message(`${quotes.length} quotes loaded · decisions are saved by the service`); }
-function renderList(){ $('count').textContent=quotes.length; $('quote-list').replaceChildren(); if(!quotes.length)$('quote-list').append(node('p','No quotes yet. Import samples to start.','empty')); for(const quote of quotes){const button=node('button',undefined,'quote'+(quote.draft.draft_id===selectedId?' selected':''));button.append(node('strong',quote.draft.draft_id),node('small',`${quote.draft.rfq_id} · ${quote.routing.net_total===null?'Duplicate':money.format(quote.routing.net_total)}`),node('small',label(quote.state)));button.onclick=()=>perform(async()=>{selectedId=quote.draft.draft_id;$('note').value='';renderList();await renderDetail();});$('quote-list').append(button);} }
-async function renderDetail(){const quote=quotes.find(q=>q.draft.draft_id===selectedId);$('detail').hidden=!quote;$('placeholder').hidden=!!quote;if(!quote)return;const {draft,routing,state}=quote;$('quote-title').textContent=draft.draft_id;$('rfq').textContent=draft.rfq_id;$('customer').textContent=`Customer ${draft.customer_id} · Proposed discount ${draft.proposed_discount_pct}%`;$('state').textContent=label(state);$('state').className='badge '+state;$('total').textContent=routing.net_total===null?'—':money.format(routing.net_total);$('discount').textContent=routing.effective_discount_pct===null?'—':routing.effective_discount_pct.toFixed(2)+'%';$('approver').textContent=routing.approver_id || 'Specialist';$('flow').replaceChildren();const stages=routing.approver_id?[['specialist_pending','1 · Specialist review'],['approver_pending','2 · Manager / VP'],['specialist_final_pending','3 · Specialist sign-off'],['approved','Approved']]:[['specialist_pending','Specialist sign-off'],['approved','Approved']];for(const [key,title]of stages)$('flow').append(node('span',title,'step'+(state===key?' current':'')));$('duplicate').hidden=!routing.duplicate_of;$('duplicate').textContent=routing.duplicate_of?`Duplicate of ${routing.duplicate_of} · no second approval request`:'';$('flags').hidden=!routing.specialist_review_flags.length;$('flags').replaceChildren();if(routing.specialist_review_flags.length){$('flags').append(node('strong','Specialist review required'));const list=node('ul');for(const flag of routing.specialist_review_flags)list.append(node('li',`${flag.line===null?'Whole quote':'Line '+flag.line}: ${flag.reason}`));$('flags').append(list);}$('lines').replaceChildren();for(const line of draft.lines){const row=node('tr');row.append(node('td',line.line));const part=node('td');part.append(node('strong',line.part_number),node('div',line.description,'muted'));row.append(part,node('td',`${line.quantity} ${line.unit}`),node('td',(line.extraction_confidence*100).toFixed(0)+'%'));$('lines').append(row);}renderActions(quote);const events=await api(`/quotes/${encodeURIComponent(draft.draft_id)}/audit`);$('audit').replaceChildren();for(const event of events){const row=node('tr');row.append(node('td',`${new Date(event.timestamp).toLocaleString()} · ${event.actor}`),node('td',label(event.action)),node('td',`${label(event.before)} → ${label(event.after)}`),node('td',event.note||'—'));$('audit').append(row);} }
-function renderActions(quote){const {state,routing}=quote;const actor=$('actor').value;const specialist=actor.startsWith('S');const canAct=state==='approver_pending'?actor===routing.approver_id:['specialist_pending','specialist_final_pending'].includes(state)&&specialist;$('actions').replaceChildren();$('note').disabled=!canAct;$('import').disabled=!specialist;$('action-help').textContent=canAct?(state==='specialist_pending'&&routing.approver_id?'Confirm the draft and review flags before sending it to the routed approver.':'Approve this stage or reject the quote.'):['approved','rejected','duplicate'].includes(state)?'This quote is complete. No further action is available.':`Waiting for ${state==='approver_pending'?routing.approver_id:'a specialist'}. Select that actor above to continue.`;if(!canAct)return;const action=state==='specialist_pending'&&routing.approver_id?'review':'approve';const button=node('button',action==='review'?'Complete review → approver':state==='approver_pending'?'Approve → specialist':'Final sign-off','primary');button.onclick=()=>decide(action);const reject=node('button','Reject quote','danger');reject.onclick=()=>decide('reject');$('actions').append(button,reject); }
-function decide(action){perform(async()=>{const id=selectedId;await api(`/quotes/${encodeURIComponent(id)}/${action}`,'POST',{note:$('note').value});$('note').value='';await refresh();message(`${id}: ${label(action)} recorded`);});}
-$('refresh').onclick=()=>perform(refresh);$('import').onclick=()=>perform(async()=>{message('Processing sample drafts and stock checks…');await api('/samples','POST',{});await refresh();});$('actor').onchange=()=>perform(refresh);perform(refresh);
+const money = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD'});
+const ruleFields = ['specialistMaxDiscountPct','managerMaxDiscountPct','confidenceMinimum','stockMaxAgeHours','reportingMaxAgeHours'];
+let quotes = [], selectedId = null, busy = false, config = null;
+const label = value => String(value ?? '—').replaceAll('_', ' ');
+function node(tag, text, className) { const element = document.createElement(tag); if (text !== undefined) element.textContent = text; if (className) element.className = className; return element; }
+function message(text, error = false) { $('status').textContent = text; $('status').className = error ? 'error' : ''; }
+async function api(path, method = 'GET', body) {
+  const response = await fetch('/demo' + path, {method, credentials:'same-origin', headers:{'X-User-Id':$('actor').value,'Content-Type':'application/json'}, ...(body !== undefined ? {body:JSON.stringify(body)} : {})});
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.error || 'Request failed');
+  return result;
+}
+function setBusy(value) {
+  busy = value;
+  for (const id of ['refresh','reset','save-config','actor']) $(id).disabled = value;
+  for (const button of $('actions').querySelectorAll('button')) button.disabled = value;
+  $('config-form').setAttribute('aria-busy', String(value));
+}
+async function perform(work) { if (busy) return; setBusy(true); try { await work(); } catch (error) { message(error.message, true); } finally { setBusy(false); } }
+function renderConfig(value) {
+  config = value;
+  for (const field of ruleFields) $(field).value = value.rules[field];
+  $('managerMinNetDollars').value = (value.rules.managerMinNetCents / 100).toFixed(2);
+  $('stockMode').value = value.stockMode;
+  $('config-meta').textContent = `Policy ${value.policyVersion} · ${label(value.stockMode)} stock`;
+}
+function renderSummary(summary) {
+  for (const key of ['total','pending','approved','rejected','duplicates']) $('summary-' + key).textContent = summary[key];
+  const seconds = summary.averageApprovalSeconds;
+  $('summary-time').textContent = seconds === null ? '—' : seconds < 60 ? `${Math.round(seconds)}s` : `${(seconds / 60).toFixed(1)}m`;
+  const stages = Object.entries(summary.byStage || {}).filter(([key]) => key.endsWith('_pending'));
+  $('stage-summary').textContent = stages.map(([key,value]) => `${label(key)}: ${value}`).join(' · ');
+}
+async function refresh() {
+  const [loadedQuotes, summary] = await Promise.all([api('/quotes'), api('/summary')]);
+  quotes = loadedQuotes;
+  if (!quotes.some(q => q.draft.draft_id === selectedId)) selectedId = quotes[0]?.draft.draft_id ?? null;
+  renderSummary(summary); renderList(); await renderDetail();
+  message(`${quotes.length} quotes loaded · policy ${summary.policyVersion} · your workspace only`);
+}
+function renderList() {
+  $('count').textContent = quotes.length;
+  $('quote-list').replaceChildren();
+  if (!quotes.length) $('quote-list').append(node('p', 'No samples loaded. Reset samples to start.', 'empty'));
+  for (const quote of quotes) {
+    const button = node('button', undefined, 'quote' + (quote.draft.draft_id === selectedId ? ' selected' : ''));
+    button.setAttribute('aria-pressed', String(quote.draft.draft_id === selectedId));
+    button.append(node('strong', quote.draft.draft_id), node('small', `${quote.draft.rfq_id} · ${quote.routing.net_total === null ? 'Duplicate' : money.format(quote.routing.net_total)}`), node('small', label(quote.state)));
+    button.onclick = () => perform(async () => { selectedId = quote.draft.draft_id; $('note').value = ''; renderList(); await renderDetail(); });
+    $('quote-list').append(button);
+  }
+}
+async function renderDetail() {
+  const quote = quotes.find(q => q.draft.draft_id === selectedId);
+  $('detail').hidden = !quote; $('placeholder').hidden = !!quote;
+  if (!quote) return;
+  const {draft, routing, state} = quote;
+  $('quote-title').textContent = draft.draft_id; $('rfq').textContent = draft.rfq_id;
+  $('customer').textContent = `Customer ${draft.customer_id} · Proposed discount ${draft.proposed_discount_pct}%`;
+  $('quote-policy').textContent = `Evaluated under policy ${quote.policy_version ?? config?.policyVersion ?? '—'}`;
+  $('state').textContent = label(state); $('state').className = 'badge ' + state;
+  $('total').textContent = routing.net_total === null ? '—' : money.format(routing.net_total);
+  $('discount').textContent = routing.effective_discount_pct === null ? '—' : routing.effective_discount_pct.toFixed(2) + '%';
+  $('approver').textContent = routing.approver_id || (routing.duplicate_of ? '—' : 'Specialist');
+  $('flow').replaceChildren();
+  const stages = routing.approver_id ? [['specialist_pending','1 · Specialist review'],['approver_pending','2 · Manager / VP'],['specialist_final_pending','3 · Specialist sign-off'],['approved','Approved']] : [['specialist_pending','Specialist sign-off'],['approved','Approved']];
+  if (!routing.duplicate_of) for (const [key,title] of stages) $('flow').append(node('span', title, 'step' + (state === key ? ' current' : '')));
+  $('duplicate').hidden = !routing.duplicate_of; $('duplicate').textContent = routing.duplicate_of ? `Duplicate of ${routing.duplicate_of} · no second approval request` : '';
+  $('flags').hidden = !routing.specialist_review_flags.length; $('flags').replaceChildren();
+  if (routing.specialist_review_flags.length) {
+    $('flags').append(node('strong', 'Specialist review required'));
+    const list = node('ul');
+    for (const flag of routing.specialist_review_flags) list.append(node('li', `${flag.line === null ? 'Whole quote' : 'Line ' + flag.line}: ${flag.reason}`));
+    $('flags').append(list);
+  }
+  $('lines').replaceChildren();
+  for (const line of draft.lines) {
+    const row = node('tr'), part = node('td');
+    part.append(node('strong', line.part_number), node('div', line.description, 'muted'));
+    row.append(node('td', line.line), part, node('td', `${line.quantity} ${line.unit}`), node('td', (line.extraction_confidence * 100).toFixed(0) + '%'));
+    $('lines').append(row);
+  }
+  renderActions(quote);
+  const events = await api(`/quotes/${encodeURIComponent(draft.draft_id)}/audit`);
+  $('audit').replaceChildren();
+  for (const event of events) {
+    const row = node('tr');
+    row.append(node('td', `${new Date(event.timestamp).toLocaleString()} · ${event.actor}`), node('td', label(event.action)), node('td', `${label(event.before)} → ${label(event.after)}`), node('td', event.note || '—'));
+    $('audit').append(row);
+  }
+  if (!events.length) { const row = node('tr'), cell = node('td', 'No decisions recorded yet.', 'muted'); cell.colSpan = 4; row.append(cell); $('audit').append(row); }
+}
+function renderActions(quote) {
+  const {state, routing} = quote, actor = $('actor').value, specialist = actor.startsWith('S');
+  const canAct = state === 'approver_pending' ? actor === routing.approver_id : ['specialist_pending','specialist_final_pending'].includes(state) && specialist;
+  $('actions').replaceChildren(); $('note').disabled = !canAct;
+  $('action-help').textContent = canAct ? (state === 'specialist_pending' && routing.approver_id ? 'Confirm the draft and resolve the review flags before routing to the manager or VP.' : 'Approve this stage or reject the quote. Decisions are recorded in the audit history.') : ['approved','rejected','duplicate'].includes(state) ? 'This quote is complete. Reset samples to explore the workflow again.' : `Waiting for ${state === 'approver_pending' ? routing.approver_id : 'a specialist'}. Choose that simulated reviewer above.`;
+  if (!canAct) return;
+  const action = state === 'specialist_pending' && routing.approver_id ? 'review' : 'approve';
+  const approve = node('button', action === 'review' ? 'Complete review → approver' : state === 'approver_pending' ? 'Approve → specialist' : 'Final sign-off', 'primary');
+  approve.onclick = () => decide(action);
+  const reject = node('button', 'Reject quote', 'danger'); reject.onclick = () => decide('reject');
+  $('actions').append(approve, reject);
+}
+function decide(action) {
+  perform(async () => { const id = selectedId; await api(`/quotes/${encodeURIComponent(id)}/${action}`, 'POST', {note:$('note').value}); $('note').value = ''; await refresh(); message(`${id}: ${label(action)} recorded`); });
+}
+$('refresh').onclick = () => perform(refresh);
+$('actor').onchange = () => perform(refresh);
+$('reset').onclick = () => perform(async () => { message('Resetting your sample workflow…'); await api('/reset', 'POST', {}); $('note').value = ''; await refresh(); message('Sample workflow reset. Previous approvals were cleared in your workspace.'); });
+$('config-form').onsubmit = event => {
+  event.preventDefault();
+  if (!$('config-form').reportValidity()) return;
+  const rules = Object.fromEntries(ruleFields.map(field => [field, Number($(field).value)]));
+  rules.managerMinNetCents = Math.round(Number($('managerMinNetDollars').value) * 100);
+  if (rules.specialistMaxDiscountPct > rules.managerMaxDiscountPct) { message('The specialist discount limit cannot exceed the manager limit.', true); return; }
+  perform(async () => { message('Saving policy and reevaluating samples…'); const saved = await api('/config', 'POST', {rules, stockMode:$('stockMode').value}); renderConfig(saved); $('note').value = ''; await refresh(); message(`Policy ${saved.policyVersion} saved. Samples were reevaluated; previous approvals were cleared.`); });
+};
+perform(async () => { renderConfig(await api('/config')); await refresh(); });
 </script>
 </body>
 </html>

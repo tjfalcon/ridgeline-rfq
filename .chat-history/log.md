@@ -124,3 +124,23 @@
 - user_prompt: "Go ahead and commit this repository for Ridgeline RFQ to my local Git and push it up to my public Git. Make the repository public, then we\u0027ll be done."
 - assistant_response_summary: "Prepared app-scoped Git repository and README public URL for tjfalcon/ridgeline-rfq; exclude dependencies/runtime/secrets, publish history with portable paths while preserving original local log. Commit/push and remote visibility verification follow."
 - files_affected: "README.md, .chat-history/log.md, .git repository metadata"
+---
+- timestamp: "2026-11-07T20:27:28.6344054Z"
+- user_prompt: "Okay, now the project\u0027s over, let\u0027s go ahead and, which of those follow-up productionalizing features are the easiest to keep it lightweight still? I want to be able to host the site on something easy, like Vercel maybe, get it up and running with the lightweight UI, and I want to add the config change options to the UI so that I can, as a bonus, submit to the interviewer the actual route for the public site, Vercel, and let them use it. So changing the configs, and there were some other options that we had discussed."
+- assistant_response_summary: "Reviewed current filesystem-backed API and official Vercel docs; proposed retain lightweight UI/domain code, adapt HTTP hosting, managed persistence, per-visitor demo workspace, hosted fixture stock, editable validated/versioned policy, reset/failure controls and small metrics. Explained existing approvals must not silently retain validity after repricing. No implementation or deployment performed."
+- files_affected: ".chat-history/log.md"
+---
+- timestamp: "2026-11-07T20:36:56.3897563Z"
+- user_prompt: "Go ahead and make those changes. Let\u0027s get this app up and running so it can be part of my portfolio at least.\n\n[$lead-delivery]([local path] take yourt time and make progress"
+- assistant_response_summary: "Built and deployed isolated portfolio demo to http[local path] with Vercel Functions, free Neon persistence, validated editable policy/reset, policy snapshots, stock scenarios and approval summary. 28 tests/typecheck passed; live approval/config/isolation checks passed. Preserved assessment version and documented hosted vs local behavior."
+- files_affected: "README.md, .gitignore, .vercelignore, .env.example, package.json, package-lock.json, public/index.html, src/routing.ts, src/workflow.ts, src/server.ts, src/demo.ts, src/workspace-store.ts, api/index.ts, test/demo.test.ts, test/workspace-store.test.ts, tsconfig.json, vercel.json, .chat-history/log.md, ignored deployment metadata and env configuration"
+---
+- timestamp: "2026-11-07T20:36:56.4386201Z"
+- user_prompt: "Set up Vercel for me. Fetch http[local path] and follow it."
+- assistant_response_summary: "Fetched official Vercel onboarding guide, installed global CLI and official plugin, authenticated CLI and MCP, linked project and connected free Neon database; secrets stored only in ignored env file and Vercel settings."
+- files_affected: "README.md, .gitignore, .vercelignore, .env.example, package.json, package-lock.json, public/index.html, src/routing.ts, src/workflow.ts, src/server.ts, src/demo.ts, src/workspace-store.ts, api/index.ts, test/demo.test.ts, test/workspace-store.test.ts, tsconfig.json, vercel.json, .chat-history/log.md, ignored deployment metadata and env configuration"
+---
+- timestamp: "2026-11-07T20:36:56.4470793Z"
+- user_prompt: "done"
+- assistant_response_summary: "Verified completed Vercel sign-in as thomasfalcon and proceeded with deployment setup."
+- files_affected: "README.md, .gitignore, .vercelignore, .env.example, package.json, package-lock.json, public/index.html, src/routing.ts, src/workflow.ts, src/server.ts, src/demo.ts, src/workspace-store.ts, api/index.ts, test/demo.test.ts, test/workspace-store.test.ts, tsconfig.json, vercel.json, .chat-history/log.md, ignored deployment metadata and env configuration"

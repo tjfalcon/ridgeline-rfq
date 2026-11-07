@@ -1,0 +1,15 @@
+{
+  "sampleNow": "2026-10-12T09:30:00-05:00",
+  "specialistMaxDiscountPct": 15,
+  "managerMaxDiscountPct": 25,
+  "managerMinNetCents": 2500000,
+  "confidenceMinimum": 0.85,
+  "stockMaxAgeHours": 24,
+  "reportingMaxAgeHours": 36,
+  "duplicateWindowHours": 24,
+  "stockBaseUrl": "http://localhost:8080",
+  "stockAttempts": 3,
+  "stockTimeoutMs": 1500,
+  "stockBackoffMs": 200,
+  "stockMaxBackoffMs": 2000
+}

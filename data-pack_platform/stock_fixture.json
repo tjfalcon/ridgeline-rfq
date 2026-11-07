@@ -1,0 +1,263 @@
+{
+ "RL104165": {
+  "part_number": "RL104165",
+  "warehouses": {
+   "DAL": 25,
+   "PHX": 28,
+   "ATL": 0
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL107944": {
+  "part_number": "RL107944",
+  "warehouses": {
+   "DAL": 92,
+   "PHX": 101,
+   "ATL": 33
+  },
+  "as_of": "2026-10-10T08:00:00-05:00"
+ },
+ "RL109071": {
+  "part_number": "RL109071",
+  "warehouses": {
+   "DAL": 18,
+   "PHX": 14,
+   "ATL": 12
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL110322": {
+  "part_number": "RL110322",
+  "warehouses": {
+   "DAL": 0,
+   "PHX": 0,
+   "ATL": 0
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL112676": {
+  "part_number": "RL112676",
+  "warehouses": {
+   "DAL": 66,
+   "PHX": 92,
+   "ATL": 57
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL115129": {
+  "part_number": "RL115129",
+  "warehouses": {
+   "DAL": 47,
+   "PHX": 0,
+   "ATL": 59
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL118373": {
+  "part_number": "RL118373",
+  "warehouses": {
+   "DAL": 80,
+   "PHX": 43,
+   "ATL": 44
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL124050": {
+  "part_number": "RL124050",
+  "warehouses": {
+   "DAL": 88,
+   "PHX": 3,
+   "ATL": 17
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL125203": {
+  "part_number": "RL125203",
+  "warehouses": {
+   "DAL": 80,
+   "PHX": 115,
+   "ATL": 116
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL131850": {
+  "part_number": "RL131850",
+  "warehouses": {
+   "DAL": 80,
+   "PHX": 40,
+   "ATL": 26
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL134671": {
+  "part_number": "RL134671",
+  "warehouses": {
+   "DAL": 80,
+   "PHX": 95,
+   "ATL": 56
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL134741": {
+  "part_number": "RL134741",
+  "warehouses": {
+   "DAL": 157,
+   "PHX": 127,
+   "ATL": 118
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL142504": {
+  "part_number": "RL142504",
+  "warehouses": {
+   "DAL": 18,
+   "PHX": 76,
+   "ATL": 0
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL149009": {
+  "part_number": "RL149009",
+  "warehouses": {
+   "DAL": 141,
+   "PHX": 20,
+   "ATL": 81
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL153354": {
+  "part_number": "RL153354",
+  "warehouses": {
+   "DAL": 0,
+   "PHX": 56,
+   "ATL": 10
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL159429": {
+  "part_number": "RL159429",
+  "warehouses": {
+   "DAL": 67,
+   "PHX": 45,
+   "ATL": 49
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL165435": {
+  "part_number": "RL165435",
+  "warehouses": {
+   "DAL": 96,
+   "PHX": 86,
+   "ATL": 35
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL165909": {
+  "part_number": "RL165909",
+  "warehouses": {
+   "DAL": 42,
+   "PHX": 114,
+   "ATL": 76
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL171482": {
+  "part_number": "RL171482",
+  "warehouses": {
+   "DAL": 101,
+   "PHX": 91,
+   "ATL": 66
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL172063": {
+  "part_number": "RL172063",
+  "warehouses": {
+   "DAL": 23,
+   "PHX": 92,
+   "ATL": 31
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL177128": {
+  "part_number": "RL177128",
+  "warehouses": {
+   "DAL": 144,
+   "PHX": 26,
+   "ATL": 24
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL178907": {
+  "part_number": "RL178907",
+  "warehouses": {
+   "DAL": 122,
+   "PHX": 89,
+   "ATL": 76
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL179507": {
+  "part_number": "RL179507",
+  "warehouses": {
+   "DAL": 80,
+   "PHX": 141,
+   "ATL": 87
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL184696": {
+  "part_number": "RL184696",
+  "warehouses": {
+   "DAL": 129,
+   "PHX": 122,
+   "ATL": 99
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL185180": {
+  "part_number": "RL185180",
+  "warehouses": {
+   "DAL": 94,
+   "PHX": 137,
+   "ATL": 59
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL185717": {
+  "part_number": "RL185717",
+  "warehouses": {
+   "DAL": 0,
+   "PHX": 67,
+   "ATL": 36
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL194646": {
+  "part_number": "RL194646",
+  "warehouses": {
+   "DAL": 80,
+   "PHX": 70,
+   "ATL": 95
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL195448": {
+  "part_number": "RL195448",
+  "warehouses": {
+   "DAL": 80,
+   "PHX": 48,
+   "ATL": 47
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ },
+ "RL195561": {
+  "part_number": "RL195561",
+  "warehouses": {
+   "DAL": 84,
+   "PHX": 51,
+   "ATL": 74
+  },
+  "as_of": "2026-10-12T08:00:00-05:00"
+ }
+}

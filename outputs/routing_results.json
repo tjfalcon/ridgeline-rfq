@@ -1,0 +1,126 @@
+[
+  {
+    "draft_id": "DQ-24101",
+    "status": "specialist_only",
+    "net_total": 435.23,
+    "effective_discount_pct": 8,
+    "approver_id": null,
+    "specialist_review_flags": [],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24102",
+    "status": "approver_required",
+    "net_total": 132.46,
+    "effective_discount_pct": 18,
+    "approver_id": "U01",
+    "specialist_review_flags": [],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24103",
+    "status": "approver_required",
+    "net_total": 728.8,
+    "effective_discount_pct": 26.22,
+    "approver_id": "U05",
+    "specialist_review_flags": [
+      {
+        "line": 3,
+        "reason": "part not found in stock API"
+      }
+    ],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24104",
+    "status": "approver_required",
+    "net_total": 2191,
+    "effective_discount_pct": 30,
+    "approver_id": "U05",
+    "specialist_review_flags": [
+      {
+        "line": 1,
+        "reason": "stock older than configured freshness limit"
+      }
+    ],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24105",
+    "status": "specialist_only",
+    "net_total": 471.2,
+    "effective_discount_pct": 5,
+    "approver_id": null,
+    "specialist_review_flags": [
+      {
+        "line": 3,
+        "reason": "extraction confidence 0.62"
+      }
+    ],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24106",
+    "status": "approver_required",
+    "net_total": 47652,
+    "effective_discount_pct": 5,
+    "approver_id": "U04",
+    "specialist_review_flags": [],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24107",
+    "status": "approver_required",
+    "net_total": 456.54,
+    "effective_discount_pct": 15.38,
+    "approver_id": "U01",
+    "specialist_review_flags": [
+      {
+        "line": 1,
+        "reason": "expired contract; list price used"
+      }
+    ],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24108",
+    "status": "specialist_only",
+    "net_total": 1517.4,
+    "effective_discount_pct": 10,
+    "approver_id": null,
+    "specialist_review_flags": [
+      {
+        "line": 1,
+        "reason": "out of stock in all warehouses"
+      }
+    ],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24109",
+    "status": "approver_required",
+    "net_total": 1409.86,
+    "effective_discount_pct": 18.36,
+    "approver_id": "U04",
+    "specialist_review_flags": [
+      {
+        "line": 3,
+        "reason": "extraction confidence 0.79"
+      },
+      {
+        "line": 6,
+        "reason": "stock older than configured freshness limit"
+      }
+    ],
+    "duplicate_of": null
+  },
+  {
+    "draft_id": "DQ-24110",
+    "status": "duplicate",
+    "net_total": null,
+    "effective_discount_pct": null,
+    "approver_id": null,
+    "specialist_review_flags": [],
+    "duplicate_of": "DQ-24102"
+  }
+]

@@ -1,0 +1,401 @@
+{
+ "drafts": [
+  {
+   "draft_id": "DQ-24101",
+   "rfq_id": "RFQ-1009",
+   "customer_id": "C1002",
+   "created_at": "2026-10-12T08:05:00-05:00",
+   "prepared_by": "S01",
+   "proposed_discount_pct": 8,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL104165",
+     "description": "Deep groove ball bearing 6205-2RS, rubber sealed both sides",
+     "quantity": 30,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL134671",
+     "description": "Classic V-belt A48 (4L50), 1/2 in top width",
+     "quantity": 8,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL159429",
+     "description": "ANSI #40 roller chain, riveted, 10 ft box",
+     "quantity": 2,
+     "unit": "BX",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24102",
+   "rfq_id": "RFQ-1010",
+   "customer_id": "C1008",
+   "created_at": "2026-10-12T08:11:00-05:00",
+   "prepared_by": "S02",
+   "proposed_discount_pct": 18,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL142504",
+     "description": "Hex cap screw 3/8-16 x 1-1/2 in, grade 5, zinc plated, box of 100",
+     "quantity": 3,
+     "unit": "BX",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL153354",
+     "description": "Disposable nitrile gloves, 5 mil, powder-free, size L, box of 100",
+     "quantity": 5,
+     "unit": "BX",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL165909",
+     "description": "O-ring AS568-214, Buna-N 70A, pack of 25",
+     "quantity": 4,
+     "unit": "PK",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24103",
+   "rfq_id": "RFQ-1011",
+   "customer_id": "C1007",
+   "created_at": "2026-10-12T08:20:00-05:00",
+   "prepared_by": "S01",
+   "proposed_discount_pct": 22,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL178907",
+     "description": "Deep groove ball bearing 6206-ZZ, metal shielded both sides",
+     "quantity": 12,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL125203",
+     "description": "Classic V-belt B55 (5L58), 21/32 in top width",
+     "quantity": 4,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL120374",
+     "description": "Hydraulic fitting, JIC -08 (1/2 in) male to 1/2 in NPT male, 90 deg elbow, forged steel, Gen 2",
+     "quantity": 25,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 4,
+     "part_number": "RL194646",
+     "description": "Hydraulic return filter element, 10 micron, cellulose, 9.5 in length",
+     "quantity": 6,
+     "unit": "EA",
+     "extraction_confidence": 0.88
+    },
+    {
+     "line": 5,
+     "part_number": "RL131850",
+     "description": "Cut-resistant gloves, ANSI A4, nitrile palm coating, size L",
+     "quantity": 12,
+     "unit": "PR",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 6,
+     "part_number": "RL185180",
+     "description": "Ball valve 1 in, 316 stainless steel, full port, NPT, 1000 WOG",
+     "quantity": 3,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24104",
+   "rfq_id": "RFQ-1012",
+   "customer_id": "C1005",
+   "created_at": "2026-10-12T08:34:00-05:00",
+   "prepared_by": "S03",
+   "proposed_discount_pct": 30,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL107944",
+     "description": "Hydraulic oil AW 46, 5 gallon pail",
+     "quantity": 20,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL195448",
+     "description": "Gear oil ISO 220, 5 gallon pail",
+     "quantity": 10,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24105",
+   "rfq_id": "RFQ-1013",
+   "customer_id": "C1004",
+   "created_at": "2026-10-12T08:41:00-05:00",
+   "prepared_by": "S02",
+   "proposed_discount_pct": 5,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL104165",
+     "description": "Deep groove ball bearing 6205-2RS, rubber sealed both sides",
+     "quantity": 30,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL177128",
+     "description": "Push-to-connect fitting, 3/8 in tube OD x 3/8 in NPT male, 90 deg elbow",
+     "quantity": 50,
+     "unit": "EA",
+     "extraction_confidence": 0.91
+    },
+    {
+     "line": 3,
+     "part_number": "RL195561",
+     "description": "Lithium complex grease, NLGI #2, 14 oz cartridge, case of 10",
+     "quantity": 1,
+     "unit": "CS",
+     "extraction_confidence": 0.62
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24106",
+   "rfq_id": "RFQ-1014",
+   "customer_id": "C1001",
+   "created_at": "2026-10-12T08:50:00-05:00",
+   "prepared_by": "S03",
+   "proposed_discount_pct": 5,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL109071",
+     "description": "AC motor 10 HP, 1800 RPM, 3-phase 208-230/460V, TEFC, 56/145T/184T frame",
+     "quantity": 40,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL115129",
+     "description": "Jaw coupling hub, L-100, 1 in bore",
+     "quantity": 80,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL185717",
+     "description": "Pillow block bearing, 1 in bore, cast iron, set screw",
+     "quantity": 80,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24107",
+   "rfq_id": "RFQ-1015",
+   "customer_id": "C1003",
+   "created_at": "2026-10-12T09:02:00-05:00",
+   "prepared_by": "S01",
+   "proposed_discount_pct": 12,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL171482",
+     "description": "Deep groove ball bearing 6204-2RS, rubber sealed both sides",
+     "quantity": 20,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL112676",
+     "description": "Classic V-belt A42 (4L44), 1/2 in top width",
+     "quantity": 10,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL159429",
+     "description": "ANSI #40 roller chain, riveted, 10 ft box",
+     "quantity": 3,
+     "unit": "BX",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 4,
+     "part_number": "RL165435",
+     "description": "Hex cap screw 1/2-13 x 2 in, grade 8, yellow zinc, box of 100",
+     "quantity": 2,
+     "unit": "BX",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24108",
+   "rfq_id": "RFQ-1016",
+   "customer_id": "C1009",
+   "created_at": "2026-10-12T09:10:00-05:00",
+   "prepared_by": "S02",
+   "proposed_discount_pct": 10,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL110322",
+     "description": "AC motor 5 HP, 1800 RPM, 3-phase 208-230/460V, TEFC, 56/145T/184T frame",
+     "quantity": 2,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL118373",
+     "description": "Gasket, flange, 2 in, 150 lb, non-asbestos fiber, 1/16 in thick",
+     "quantity": 40,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL184696",
+     "description": "Food-grade H1 grease, NLGI #2, 14 oz cartridge, case of 10",
+     "quantity": 3,
+     "unit": "CS",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24109",
+   "rfq_id": "RFQ-1017",
+   "customer_id": "C1010",
+   "created_at": "2026-10-12T09:18:00-05:00",
+   "prepared_by": "S03",
+   "proposed_discount_pct": 16,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL134741",
+     "description": "Ball valve 3/4 in, lead-free brass, full port, NPT, 600 WOG",
+     "quantity": 15,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL179507",
+     "description": "Ball valve 1 in, lead-free brass, full port, NPT, 600 WOG",
+     "quantity": 10,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL172063",
+     "description": "Ball valve 1/2 in, lead-free brass, full port, NPT, 600 WOG",
+     "quantity": 10,
+     "unit": "EA",
+     "extraction_confidence": 0.79
+    },
+    {
+     "line": 4,
+     "part_number": "RL118373",
+     "description": "Gasket, flange, 2 in, 150 lb, non-asbestos fiber, 1/16 in thick",
+     "quantity": 40,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 5,
+     "part_number": "RL124050",
+     "description": "Gasket, flange, 3 in, 150 lb, non-asbestos fiber, 1/16 in thick",
+     "quantity": 40,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 6,
+     "part_number": "RL107944",
+     "description": "Hydraulic oil AW 46, 5 gallon pail",
+     "quantity": 6,
+     "unit": "EA",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 7,
+     "part_number": "RL149009",
+     "description": "Pleated air filter 20x20x2 in, MERV 8, case of 12",
+     "quantity": 4,
+     "unit": "CS",
+     "extraction_confidence": 0.97
+    }
+   ]
+  },
+  {
+   "draft_id": "DQ-24110",
+   "rfq_id": "RFQ-1010",
+   "customer_id": "C1008",
+   "created_at": "2026-10-12T09:25:00-05:00",
+   "prepared_by": "S02",
+   "proposed_discount_pct": 18,
+   "lines": [
+    {
+     "line": 1,
+     "part_number": "RL142504",
+     "description": "Hex cap screw 3/8-16 x 1-1/2 in, grade 5, zinc plated, box of 100",
+     "quantity": 3,
+     "unit": "BX",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 2,
+     "part_number": "RL153354",
+     "description": "Disposable nitrile gloves, 5 mil, powder-free, size L, box of 100",
+     "quantity": 5,
+     "unit": "BX",
+     "extraction_confidence": 0.97
+    },
+    {
+     "line": 3,
+     "part_number": "RL165909",
+     "description": "O-ring AS568-214, Buna-N 70A, pack of 25",
+     "quantity": 4,
+     "unit": "PK",
+     "extraction_confidence": 0.97
+    }
+   ],
+   "note": "resubmitted by extraction service after a timeout"
+  }
+ ]
+}

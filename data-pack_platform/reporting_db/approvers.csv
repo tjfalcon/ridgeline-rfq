@@ -1,0 +1,9 @@
+approver_id,name,role,region,backup_approver_id,out_of_office_from,out_of_office_to
+U01,Priya Nair,regional_manager,West,U04,,
+U02,Tom Becker,regional_manager,Central,U04,2026-10-12,2026-10-16
+U03,Alicia Moreno,regional_manager,East,U04,,
+U04,Grant Holloway,sales_operations_director,ALL,U05,,
+U05,Dana Whitfield,vp_sales,ALL,,,
+S01,Maria Lopez,quote_specialist,ALL,S02,,
+S02,Kevin Tran,quote_specialist,ALL,S03,,
+S03,Jordan Price,quote_specialist,ALL,S01,,

@@ -144,3 +144,8 @@
 - user_prompt: "done"
 - assistant_response_summary: "Verified completed Vercel sign-in as thomasfalcon and proceeded with deployment setup."
 - files_affected: "README.md, .gitignore, .vercelignore, .env.example, package.json, package-lock.json, public/index.html, src/routing.ts, src/workflow.ts, src/server.ts, src/demo.ts, src/workspace-store.ts, api/index.ts, test/demo.test.ts, test/workspace-store.test.ts, tsconfig.json, vercel.json, .chat-history/log.md, ignored deployment metadata and env configuration"
+---
+- timestamp: "2026-11-07T20:44:38.0006065Z"
+- user_prompt: "commit a change that makes the config options default from apps\\ridgeline-rfq\\config\\approval-rules.json but saved in local storage in the ui, then surface them in the UI so users can change them for themselves. make sure to surface that the rule changes will only be temporary, for example sake. \n\nwhat other small but helpful changes can we make to this app to make it portfolio worthy?"
+- assistant_response_summary: "Added source-policy defaults endpoint, browser-local temporary preferences, safe workspace synchronization and restore-defaults UI. 31 tests/typecheck/UI module syntax passed. Commit and publish update; suggested route explanations, guided walkthrough, filtering and audit export as next small portfolio improvements."
+- files_affected: "src/demo.ts, src/server.ts, public/index.html, public/preferences.js, test/preferences.test.ts, test/demo.test.ts, README.md, .chat-history/log.md"

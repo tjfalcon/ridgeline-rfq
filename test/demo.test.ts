@@ -17,6 +17,11 @@ test('portfolio demo isolates visitors, saves policy, resets approvals, simulate
     return { status: response.status, body: await response.json() as any };
   };
   try {
+    const preferenceScript = await fetch(base + '/preferences.js');
+    assert.equal(preferenceScript.status, 200);
+    assert.match(preferenceScript.headers.get('content-type') ?? '', /javascript/);
+    const baseline = (await call('/demo/defaults')).body;
+    assert.equal(baseline.rules.specialistMaxDiscountPct, 15);
     assert.equal((await call('/demo/config')).status, 200);
     assert.match(cookie, /^ridgeline_workspace=/);
     const quotes = (await call('/demo/quotes')).body;
@@ -30,6 +35,7 @@ test('portfolio demo isolates visitors, saves policy, resets approvals, simulate
     assert.equal((await call('/demo/config', { rules: { specialistMaxDiscountPct: 50 }, stockMode: 'healthy' })).status, 400);
     const changed = await call('/demo/config', { rules: { specialistMaxDiscountPct: 1 }, stockMode: 'unavailable' });
     assert.equal(changed.status, 200); assert.equal(changed.body.policyVersion, 2);
+    assert.deepEqual((await call('/demo/defaults')).body, baseline);
     const reset = (await call('/demo/quotes')).body;
     assert.equal(reset[1].state, 'specialist_pending'); assert.equal(reset[1].policy_version, 2);
     assert.ok(reset[0].routing.specialist_review_flags.some((f: any) => f.reason === 'stock unavailable after retries'));

@@ -12,7 +12,7 @@ export function createApi(workflow: Workflow, sampleDrafts: unknown) {
     let pathname = '/';
     try {
       pathname = new URL(request.url!, 'http://localhost').pathname;
-      if (pathname.startsWith('/demo/')) { await demoHandler(request, response); return; }
+      if (pathname.startsWith('/demo/') || pathname === '/preferences.js') { await demoHandler(request, response); return; }
       const path = pathname.split('/').filter(Boolean);
       if (request.method === 'GET' && pathname === '/') {
         const html = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');

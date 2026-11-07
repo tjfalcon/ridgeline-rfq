@@ -66,6 +66,13 @@ export function createDemoHandler(repository: WorkspaceRepository, fixtures: Fix
         response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         response.end(await readFile(new URL('public/index.html', root), 'utf8')); return;
       }
+      if (request.method === 'GET' && path === '/preferences.js') {
+        response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-cache' });
+        response.end(await readFile(new URL('public/preferences.js', root), 'utf8')); return;
+      }
+      if (request.method === 'GET' && path === '/demo/defaults') {
+        send(200, { rules: Object.fromEntries(editable.map(key => [key, fixtures.rules[key]])), stockMode: 'healthy' }); return;
+      }
       if (!path.startsWith('/demo/')) throw new ApiError(404, 'Endpoint not found');
       if (request.method === 'POST') {
         const site = request.headers['sec-fetch-site'];

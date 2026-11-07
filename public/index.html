@@ -26,7 +26,7 @@
     <div class="stat"><span>Average approval time</span><strong id="summary-time">—</strong><small>Receipt to final sign-off</small></div>
   </section>
   <div id="stage-summary" class="stage-summary"></div>
-  <details class="panel settings" id="settings"><summary><span>Policy & stock scenarios</span><small id="config-meta">Loading policy…</small></summary><div class="settings-body">
+  <details class="panel settings" id="settings" open><summary><span>Try temporary rules & stock scenarios</span><small id="config-meta">Loading policy…</small></summary><div class="settings-body">
     <p>Change the routing policy or simulate a stock problem. Saving creates a new policy version and reprocesses the ten samples, clearing their prior approvals in this workspace.</p>
     <form id="config-form">
       <div class="settings-grid">
@@ -38,7 +38,7 @@
         <div class="field"><label for="reportingMaxAgeHours">Maximum reporting age (hours)</label><input id="reportingMaxAgeHours" type="number" min="0" step="0.5" required></div>
         <div class="field"><label for="stockMode">Stock scenario</label><select id="stockMode"><option value="healthy">Healthy · fixture stock</option><option value="unavailable">Unavailable · retries exhausted</option><option value="stale">Stale · old stock readings</option></select><small>Uses fictional inventory, no local mock needed</small></div>
       </div>
-      <div class="settings-footer"><p>Policy changes do not preserve approvals on newly evaluated quotes. To repeat a walkthrough without changing policy, use <strong>Reset samples</strong>.</p><button id="save-config" type="submit" class="primary">Save rules & reset samples</button></div>
+      <div class="settings-footer"><p id="preference-notice"><strong>Temporary example rules, just for you.</strong> Defaults come from the project policy file. Changes are saved in this browser until you restore defaults or clear browser data; they never change the shared policy. Applying rules resets sample approvals.</p><div class="controls"><button id="restore-defaults" type="button">Restore defaults & reset</button><button id="save-config" type="submit" class="primary">Save in this browser & apply</button></div></div>
     </form>
   </div></details>
   <main class="layout">
@@ -54,11 +54,14 @@
   </main>
   <p class="footer-note">Portfolio demonstration · Every quote requires a person’s final sign-off. Approval rules use the supplied sample policy date for reproducible outcomes.</p>
 </div>
-<script>
+<script type="module">
+import { savePreferences, clearPreferences, synchronizePreferences } from '/preferences.js';
 const $ = id => document.getElementById(id);
 const money = new Intl.NumberFormat('en-US', {style:'currency', currency:'USD'});
 const ruleFields = ['specialistMaxDiscountPct','managerMaxDiscountPct','confidenceMinimum','stockMaxAgeHours','reportingMaxAgeHours'];
 let quotes = [], selectedId = null, busy = false, config = null;
+let defaults = null;
+function browserStorage() { try { return window.localStorage; } catch { return null; } }
 const label = value => String(value ?? '—').replaceAll('_', ' ');
 function node(tag, text, className) { const element = document.createElement(tag); if (text !== undefined) element.textContent = text; if (className) element.className = className; return element; }
 function message(text, error = false) { $('status').textContent = text; $('status').className = error ? 'error' : ''; }
@@ -70,7 +73,7 @@ async function api(path, method = 'GET', body) {
 }
 function setBusy(value) {
   busy = value;
-  for (const id of ['refresh','reset','save-config','actor']) $(id).disabled = value;
+  for (const id of ['refresh','reset','save-config','restore-defaults','actor']) $(id).disabled = value;
   for (const button of $('actions').querySelectorAll('button')) button.disabled = value;
   $('config-form').setAttribute('aria-busy', String(value));
 }
@@ -172,9 +175,21 @@ $('config-form').onsubmit = event => {
   const rules = Object.fromEntries(ruleFields.map(field => [field, Number($(field).value)]));
   rules.managerMinNetCents = Math.round(Number($('managerMinNetDollars').value) * 100);
   if (rules.specialistMaxDiscountPct > rules.managerMaxDiscountPct) { message('The specialist discount limit cannot exceed the manager limit.', true); return; }
-  perform(async () => { message('Saving policy and reevaluating samples…'); const saved = await api('/config', 'POST', {rules, stockMode:$('stockMode').value}); renderConfig(saved); $('note').value = ''; await refresh(); message(`Policy ${saved.policyVersion} saved. Samples were reevaluated; previous approvals were cleared.`); });
+  perform(async () => { message('Applying your temporary rules…'); const saved = await api('/config', 'POST', {rules, stockMode:$('stockMode').value}); const remembered = savePreferences(browserStorage(), saved); renderConfig(saved); $('note').value = ''; await refresh(); message(remembered ? 'Temporary rules saved in this browser and applied to your samples. Previous approvals were cleared.' : 'Rules applied for this visit. Browser storage is unavailable, so settings cannot be remembered.'); });
 };
-perform(async () => { renderConfig(await api('/config')); await refresh(); });
+$('restore-defaults').onclick = () => perform(async () => {
+  const restored = await api('/config', 'POST', defaults);
+  const cleared = clearPreferences(browserStorage());
+  renderConfig(restored); $('note').value = ''; await refresh();
+  message(cleared ? 'Project defaults restored. Saved browser preferences and sample approvals were cleared.' : 'Project defaults applied. Browser storage could not be cleared.');
+});
+perform(async () => {
+  const loaded = await Promise.all([api('/defaults'), api('/config')]);
+  defaults = loaded[0];
+  const preferences = await synchronizePreferences(browserStorage(), defaults, loaded[1], settings => api('/config', 'POST', settings));
+  renderConfig(preferences.config); await refresh();
+  if (!preferences.available) message('Project defaults loaded. Saved browser settings were invalid or unavailable.');
+});
 </script>
 </body>
 </html>

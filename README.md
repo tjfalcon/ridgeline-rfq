@@ -50,7 +50,9 @@ node --env-file=.env.local src/demo.ts
 
 The public deployment uses Vercel Functions and Neon Postgres. Each visitor gets an opaque HttpOnly cookie and an isolated workspace. Workspaces expire after 24 hours of inactivity; the demo retains approximately 500 recent audit events. All data is fictional and reviewer identities are simulated.
 
-The UI lets visitors edit approval thresholds, the amount trigger, confidence and freshness limits. **Save rules & reset samples** validates settings, increments the policy version, records previous/new rule values, reprices/reroutes ten samples and clears prior approvals. Each resulting quote records its policy version. **Reset samples** keeps current settings. Stock scenarios simulate healthy, stale or unavailable HTTP responses in process through the shared retry adapter; the original assessment CLI continues to call the independently running stock API over HTTP.
+The UI lets visitors edit approval thresholds, the amount trigger, confidence and freshness limits. **Save in this browser & apply** validates settings, increments the policy version, records previous/new rule values, reprices/reroutes ten samples and clears prior approvals. Each resulting quote records its policy version. **Reset samples** keeps current settings. Stock scenarios simulate healthy, stale or unavailable HTTP responses in process through the shared retry adapter; the original assessment CLI continues to call the independently running stock API over HTTP.
+
+Browser preferences start from the editable fields in `config/approval-rules.json`, exposed by `GET /demo/defaults`. The UI stores temporary example settings under `ridgeline.demo.preferences.v1` in localStorage. They persist in that browser until **Restore defaults & reset** or browser data is cleared; they do not change the source policy or other visitors. On reload, saved settings are synchronized into the visitor workspace only when different, preserving matching approval state. A recreated/expired workspace receives the saved browser settings. Invalid or unavailable browser storage falls back to defaults. No credentials are stored in localStorage.
 
 The summary shows pending/approved/rejected/duplicate counts, workflow stages and average receipt-to-final-approval time for completed quotes. Switch reviewer identities to follow the same specialist -> manager/VP -> specialist gates.
 
@@ -141,7 +143,7 @@ Invoke-RestMethod "$base/quotes/DQ-24102/audit" -Headers $specialist
 
 The existing demonstration store already approved DQ-24102; replaying its decisions correctly fails. Use another pending quote and its routed approver, or preserve the store and use a fresh isolated copy for a repeatable demo.
 
-Verification: 28 automated tests cover tiers/boundaries, backups, pricing, duplicates, stale/missing/unavailable stock, retries/timeouts, malformed responses, configuration validation, HTTP roles/workflow, audit and persistence reload. `npm run typecheck` checks source and tests. Earlier live evidence includes approval surviving a process restart. The public UI endpoint responds. A live production API walkthrough verified ten quotes, the three-stage approval, saved policy/reset, unavailable stock and visitor isolation. Automated visual browser verification was unavailable.
+Verification: 31 automated tests cover tiers/boundaries, backups, pricing, duplicates, stale/missing/unavailable stock, retries/timeouts, malformed responses, configuration validation, HTTP roles/workflow, audit and persistence reload. `npm run typecheck` checks source and tests. Earlier live evidence includes approval surviving a process restart. The public UI endpoint responds. A live production API walkthrough verified ten quotes, the three-stage approval, saved policy/reset, unavailable stock and visitor isolation. Automated visual browser verification was unavailable.
 
 ## Production
 
@@ -171,5 +173,6 @@ Submission checklist:
 - The portfolio backend uses `DATABASE_URL`; include `.env.example` with names only and exclude `.env.local` and all secret values. Exclude real `.env` files and secrets from any archive.
 - Recording must be one continuous full-screen MP4 with the system clock visible, ideally <=60 minutes and never >90. Narrate stubs, demonstrate the sample routes and show the production diagram.
 - Repository publication is handled separately from `ridgeline-quote-approvals.zip`, the public Drive recording link and final submission. Do not treat local tests as evidence these actions occurred.
+
 
 
